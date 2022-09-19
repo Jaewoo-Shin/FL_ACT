@@ -118,7 +118,7 @@ def parse_args():
                     help='name of model;',
                     type=str,
                     required=True,
-                    choices=['lenet', 'lenetcontainer', 'vgg11', 'vgg11-bn', 'vgg13', 'vgg13-bn', 'vgg16', 'vgg16-bn', 'vgg19', 'vgg19-bn', 'resnet8', 'resnet18', 'resnet34', 'resnet50', 'simpleNet3', 'simpleNet4', 'simpleNet5', 'simpleNet6', 'simpleNet7', 'simpleNet4_bn', 'simpleNet4_sc'])
+                    choices=['lenet', 'lenetcontainer', 'vgg11', 'vgg11-bn', 'vgg13', 'vgg13-bn', 'vgg16', 'vgg16-bn', 'vgg19', 'vgg19-bn', 'resnet8', 'resnet18', 'resnet34', 'resnet50', 'resnet20', 'resnet32', 'resnet44', 'resnet56', 'resnet110', 'resnet1202', 'simpleNet3', 'simpleNet4', 'simpleNet5', 'simpleNet6', 'simpleNet7', 'simpleNet4_bn', 'simpleNet4_sc'])
     # example : --model-kwargs num_classes=10
     parser.add_argument('--model-kwargs',
                         dest='model_kwargs',
