@@ -25,6 +25,7 @@ MODEL = {'lenet': LeNet, 'lenetcontainer': LeNetContainer, 'vgg11': vgg11,
          'vgg11-bn': vgg11_bn, 'vgg13': vgg13, 'vgg13-bn': vgg13_bn,
          'vgg16': vgg16, 'vgg16-bn': vgg16_bn, 'vgg19': vgg19, 'vgg19-bn': vgg19_bn,
          'resnet8': resnet8, 'resnet18': resnet18, 'resnet34': resnet34, 'resnet50': resnet50,
+         'resnet20': resnet20, 'resnet32': resnet32, 'resnet44': resnet44, 'resnet56': resnet56, 'resnet110': resnet110, 'resnet1202': resnet1202,
          'simpleNet3': simpleNet3, 'simpleNet4': simpleNet4, 'simpleNet5': simpleNet5,
          'simpleNet6': simpleNet6, 'simpleNet7': simpleNet7, 'simpleNet4_bn': simpleNet4_bn, 'simpleNet4_sc':simpleNet4_sc}
 
@@ -132,7 +133,7 @@ if __name__ == '__main__':
         client_acc = []
         client_acc = ['-'] * args.client_accuracy * (1 + args.memorization_check) * args.num_clients
         
-        # log_pd.loc[r] = [acc, std, min, max] + ece + memchk_val + client_acc
+        log_pd.loc[r] = [acc, std, min, max] + ece + memchk_val + client_acc
         # log_pd.to_csv(log_filename)        
         
         if acc >= best_acc[0]:
@@ -145,8 +146,8 @@ if __name__ == '__main__':
             check_point_weight = {}
             check_point_weight['server'] = copy.deepcopy(server_weight)
             check_point_weight['client'] = copy.deepcopy(client_weight)
-            if not os.path.isdir(check_filename.replace('.t1', '') + '/'):
-                os.makedirs(check_filename.replace('.t1', '') + '/')
+            # if not os.path.isdir(check_filename.replace('.t1', '') + '/'):
+            #     os.makedirs(check_filename.replace('.t1', '') + '/')
 
             # torch.save(check_point_weight, check_filename.replace('.t1', '') + f'/epoch={r+1}.t1')
     #selected_clients_plotter(selected_clients_num, img_filename, args)
@@ -164,7 +165,7 @@ if __name__ == '__main__':
     print('Best Test Accuracy: %.2f' % best_acc[0])
     
     log_filename = log_filename.replace(".csv", "_best.csv")
-    # client_acc = personalized_accuracy(model, best_weight['server'], dataset_sizes, client_loader, class_num, args)
+    client_acc = personalized_accuracy(model, best_weight['server'], dataset_sizes, client_loader, class_num, args)
     
     log_pd.loc[args.num_rounds] = best_acc + client_acc
     log_pd.to_csv(log_filename)
