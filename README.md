@@ -1,6 +1,7 @@
 # FL_ACT
 activation function in Federated Learning
 To run experiment run experiment.sh as follows
-'''sh
+
+```sh
 bash experiment.sh
-'''
+```
